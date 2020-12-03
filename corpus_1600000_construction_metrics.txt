@@ -1,0 +1,3 @@
+suffix array construction time: 4310
+wavelet tree construct total time: 467
+wavelet tree total memory kb: 252593
