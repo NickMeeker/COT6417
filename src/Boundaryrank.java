@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Boundaryrank {
     Map<Character, List<Integer>> bitvector;
-    Map<Character, List<List<List<Integer>>>> smallrankMap;
+    Map<Character, List<List<Integer>>> smallrankMap;
     Map<Character, List<Integer>> boundaryrankMap;
     int t;
     int numBlocks;
@@ -36,30 +36,23 @@ public class Boundaryrank {
                 if(blockEndingIndex > n) {
                     blockEndingIndex = n - 1;
                 }
-                List<List<Integer>> smallrankEntry = this.computeSmallrankEntry(L.substring(blockStartingIndex, blockEndingIndex), c);
+                List<Integer> smallrankEntry = this.computeSmallrankEntry(L.substring(blockStartingIndex, blockEndingIndex), c);
 
                 this.boundaryrankMap.get(c).add(boundaryrankValue);
                 this.smallrankMap.get(c).add(smallrankEntry);
                 if(smallrankEntry.size() > 0)
-                    boundaryrankValue += smallrankEntry.get(0).get(smallrankEntry.get(0).size() - 1);
+                    boundaryrankValue += smallrankEntry.get(smallrankEntry.size() - 1);
                 i++;
                 blockStartingIndex = i * this.t;
             }
         }
     }
 
-    List<List<Integer>> computeSmallrankEntry(String s, char c) {
-        List<List<Integer>> smallrankEntry = new ArrayList<>();
+    List<Integer> computeSmallrankEntry(String s, char c) {
+        List<Integer> smallrankEntry = new ArrayList<>();
+        int rank = 0;
         for(int i = 0; i < s.length(); i++) {
-            List<Integer> block = new ArrayList<>();
-            int frequency = 0;
-            for(int j = i; j < s.length(); j++) {
-                if(s.charAt(j) == c) {
-                    frequency++;
-                }
-                block.add(frequency);
-            }
-            smallrankEntry.add(block);
+            smallrankEntry.add(s.charAt(i) == c ? ++rank : rank);
         }
         return smallrankEntry;
     }
@@ -70,7 +63,8 @@ public class Boundaryrank {
         int blockIndex = i / this.t;
         int indexInBlock = i % this.t;
 
-        return this.boundaryrankMap.get(c).get(blockIndex) + this.smallrankMap.get(c).get(blockIndex).get(0).get(indexInBlock);
+        if(indexInBlock == this.smallrankMap.get(c).get(blockIndex).size()) indexInBlock--;
+        return this.boundaryrankMap.get(c).get(blockIndex) + this.smallrankMap.get(c).get(blockIndex).get(indexInBlock);
 
     }
 

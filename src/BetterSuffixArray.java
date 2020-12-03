@@ -7,10 +7,10 @@ public class BetterSuffixArray {
     String S;
     BetterSuffixArray(String S) {
         this.S = S;
-
         int n = S.length();
-
         this.SA = new Suffix[n];
+
+        int done = -1;
 
         for(int i = 0; i < n; i++) {
             // create all the suffixes with their initial buckets
@@ -19,11 +19,19 @@ public class BetterSuffixArray {
 
         // handle the buckets of the next elements
         for(int i = 0; i < n; i++) {
-            SA[i].nextBucket = i + 1 < n ? SA[i + 1].bucket : -1;
+            if(i + 1 < n) {
+                SA[i].nextBucket = SA[i + 1].bucket;
+            } else {
+                SA[i].nextBucket = done; // done!
+            }
         }
 
         // sort based on initial bucket
-        Arrays.sort(SA);
+        Arrays.sort(SA, (s1, s2) -> {
+            if (s1.bucket != s2.bucket)
+                return Integer.compare(s1.bucket, s2.bucket);
+            return Integer.compare(s1.nextBucket, s2.nextBucket);
+        });
 
         // this is where we'll map the original index of each suffix to its index in SA
         int[] indices = new int[n];
@@ -50,13 +58,22 @@ public class BetterSuffixArray {
             for(int i = 0; i < n; i++) {
                 // need to update the bucket number of the suffix that is bucketSize / 2 away
                 int next = SA[i].index + bucketSize / 2;
-                SA[i].nextBucket = next < n ? SA[indices[next]].bucket : -1;
+                if(next < n) {
+                    SA[i].nextBucket = SA[indices[next]].bucket;
+                } else {
+                    SA[i].nextBucket = done;
+                }
             }
-            Arrays.sort(SA);
+            // now sort based on new bucket
+            Arrays.sort(SA, (s1, s2) -> {
+                if (s1.bucket != s2.bucket)
+                    return Integer.compare(s1.bucket, s2.bucket);
+                return Integer.compare(s1.nextBucket, s2.nextBucket);
+            });
         }
     }
 
-    class Suffix implements Comparable<Suffix>
+    class Suffix
     {
         public int index;
         int bucket;
@@ -67,13 +84,6 @@ public class BetterSuffixArray {
             this.index = index;
             this.bucket = bucket;
             this.nextBucket = nextBucket;
-        }
-
-        public int compareTo(Suffix s)
-        {
-            if (bucket != s.bucket)
-                return Integer.compare(bucket, s.bucket);
-            return Integer.compare(nextBucket, s.nextBucket);
         }
     }
 

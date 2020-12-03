@@ -11,7 +11,6 @@ public class SuffixArray {
     SuffixArray(String S) {
         this.suffixArray = new ArrayList<>();
 
-
         StringBuilder s = new StringBuilder(S);
         for(int i = 0; i < S.length(); i++) {
             this.suffixArray.add(new Suffix(new StringBuilder(s), i));

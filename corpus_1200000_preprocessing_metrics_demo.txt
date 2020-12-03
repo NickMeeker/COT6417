@@ -1,0 +1,12 @@
+suffix array construction time: 3952
+wavelet tree construct total time: 305
+wavelet tree total memory kb: 153244
+boundaryrank construct total time: 978
+boundaryrank total memory kb: 737572
+BWT construction time: 4024
+753716 753716
+7630
+wavelet tree search time: 3
+753716 753716
+7630
+boundaryrank search time: 1

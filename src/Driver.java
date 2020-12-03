@@ -8,7 +8,8 @@ public class Driver {
 //        String S = "MISSISSIPPI";
 //        String P = "ISS";
         PrintStream console = System.out;
-        for(int bytes = 100000; bytes <= 1500000; bytes += 100000) {
+        for(int bytes = 1600000; bytes <= 2000000; bytes += 100000) {
+        //for(int bytes = 1; bytes <= 15; bytes += 1) {
             // dont try this at home
             System.gc();
             System.gc();
@@ -20,7 +21,10 @@ public class Driver {
             //PrintStream o = new PrintStream(new File("pattern_" + bytes + "_runtime_metrics.txt"));
             System.setOut(o);
             String S = new Scanner(new File("corpus_" + bytes + ".txt")).useDelimiter("\\Z").next();
+            //String S = new Scanner(new File("corpus_" + 1000000 + ".txt")).useDelimiter("\\Z").next();
             String P = new Scanner(new File("pattern.txt")).useDelimiter("\\Z").next();
+            //String P = new Scanner(new File("pattern_" + bytes + ".txt")).useDelimiter("\\Z").next();
+
 
 
             S = S.replaceAll("[^a-zA-Z]", "").toUpperCase() + '$';
