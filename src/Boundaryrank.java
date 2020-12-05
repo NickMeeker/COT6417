@@ -31,8 +31,10 @@ public class Boundaryrank {
             int blockStartingIndex = 0;
             int i = 0;
             int boundaryrankValue = 0;
+            // for each block
             while(blockStartingIndex < n) {
                 int blockEndingIndex = blockStartingIndex + this.t;
+                // it's possible the last block will be shorter
                 if(blockEndingIndex > n) {
                     blockEndingIndex = n - 1;
                 }
@@ -42,6 +44,7 @@ public class Boundaryrank {
                 this.smallrankMap.get(c).add(smallrankEntry);
                 if(smallrankEntry.size() > 0)
                     boundaryrankValue += smallrankEntry.get(smallrankEntry.size() - 1);
+                // move on to next block
                 i++;
                 blockStartingIndex = i * this.t;
             }
@@ -49,6 +52,7 @@ public class Boundaryrank {
     }
 
     List<Integer> computeSmallrankEntry(String s, char c) {
+        // this is the same rank function used in wavelet tree node constructor
         List<Integer> smallrankEntry = new ArrayList<>();
         int rank = 0;
         for(int i = 0; i < s.length(); i++) {
@@ -63,7 +67,6 @@ public class Boundaryrank {
         int blockIndex = i / this.t;
         int indexInBlock = i % this.t;
 
-        if(indexInBlock == this.smallrankMap.get(c).get(blockIndex).size()) indexInBlock--;
         return this.boundaryrankMap.get(c).get(blockIndex) + this.smallrankMap.get(c).get(blockIndex).get(indexInBlock);
 
     }

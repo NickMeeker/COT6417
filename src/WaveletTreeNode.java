@@ -13,10 +13,12 @@ public class WaveletTreeNode {
         this.rank1 = new ArrayList<>();
         this.alphabetMap = new HashMap<>();
 
+        // build bitvector
         for(char c : s.toCharArray()) {
             this.B.add(leftAlphabet.contains(c) ? 0 : 1);
         }
 
+        // build rank table
         int rank = 0;
         for(int bit : this.B) {
             this.rank1.add(bit == 1 ? ++rank : rank);

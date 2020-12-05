@@ -19,7 +19,7 @@ public class SuffixArray {
         }
 
         this.sortedSuffixArray = new ArrayList<>(this.suffixArray);
-        Collections.sort(this.sortedSuffixArray, Comparator.comparing(a -> a.suffix));
+        //Collections.sort(this.sortedSuffixArray, Comparator.comparing(a -> a.suffix));
 
         this.burrowsWheelerMatrix = new ArrayList<>();
         String t = S;

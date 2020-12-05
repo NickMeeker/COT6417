@@ -16,7 +16,7 @@ public class Driver {
             System.gc();
             System.gc();
             System.gc();
-            System.out.println(bytes / 100000 + " out of " + 15);
+            System.out.println(bytes / 100000 + " out of " + 20);
             PrintStream o = new PrintStream(new File("corpus_" + bytes + "_preprocessing_metrics_demo.txt"));
             //PrintStream o = new PrintStream(new File("pattern_" + bytes + "_runtime_metrics.txt"));
             System.setOut(o);

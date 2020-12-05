@@ -5,6 +5,8 @@ import java.util.Map;
 public class BetterSuffixArray {
     Suffix[] SA;
     String S;
+
+    // Runtime: O(n lgn lgn)
     BetterSuffixArray(String S) {
         this.S = S;
         int n = S.length();
