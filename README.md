@@ -12,3 +12,6 @@ Classes to ignore:
 - **Driver:** This really just reads the input, builds the suffix array, the fmindex, and then queries for P. Lots of printing metrics and stuff, too.
 - **BuildGiantCorpus:** This is a script I used for generating data up to 2MB
 - **Mode:** backwardSearch() takes this to know if it should check the wavelet tree or the boundaryrank table for occ(i,c)
+
+## To run
+The easiest way to run this will be to clone the repo and import it into a Java IDE (Intellij, Eclipse, etc). From there, you can point your run configuration to Driver (that's where main lives) and run it. Early in the for loop in Driver, the application reads S and P from files. If you're interested in supplying your own S and P, you can just replace those filepaths (and maybe change the loop condition).
