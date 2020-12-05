@@ -8,7 +8,8 @@ public class Driver {
 //        String S = "MISSISSIPPI";
 //        String P = "ISS";
         PrintStream console = System.out;
-        for(int bytes = 1600000; bytes <= 2000000; bytes += 100000) {
+        // currently set to run against corpuses 1-15
+        for(int bytes = 100000; bytes <= 1500000; bytes += 100000) {
         //for(int bytes = 1; bytes <= 15; bytes += 1) {
             // dont try this at home
             System.gc();
@@ -25,8 +26,6 @@ public class Driver {
             String P = new Scanner(new File("pattern.txt")).useDelimiter("\\Z").next();
             //String P = new Scanner(new File("pattern_" + bytes + ".txt")).useDelimiter("\\Z").next();
 
-
-
             S = S.replaceAll("[^a-zA-Z]", "").toUpperCase() + '$';
             P = P.replaceAll("[^a-zA-Z]", "").toUpperCase();
 
@@ -40,7 +39,6 @@ public class Driver {
             endTime = fmIndex.lConstructEndTime;
             totalTime = endTime - startTime;
             System.out.println("BWT construction time: " + totalTime);
-
 
             fmIndex.waveletTreeSearchStartTime = System.currentTimeMillis();
             int[] result = fmIndex.backwardSearch(P, Mode.Wavelet);

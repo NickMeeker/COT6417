@@ -32,7 +32,8 @@ public class BuildGiantCorpus {
         String corpus1000000 =  new Scanner(new File("corpus_" + 1000000 + ".txt")).useDelimiter("\\Z").next();
         int count = 1;
         for(i = 0; i < corpus1000000.length(); i++) {
-            if(i > 0 && i % 66666 == 0) /*15 datapoints*/ {
+            if(count > 10) break;
+            if(i > 0 && i % 66666 == 0) {
                 String filename = patternFilenameBase + (count++) + ".txt";
                 BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
                 writer.write(pattern.toString());
