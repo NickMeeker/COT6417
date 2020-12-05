@@ -10,7 +10,7 @@ public class Driver {
         PrintStream console = System.out;
         // currently set to run against corpuses 1-15
         for(int bytes = 100000; bytes <= 1500000; bytes += 100000) {
-        //for(int bytes = 1; bytes <= 15; bytes += 1) {
+        //for(int bytes = 1; bytes <= 10; bytes += 1) {
             // dont try this at home - pray the gc gets cleared on each run so we can get a better idea of mem usage
             // this is kind of a joke, i don't have any evidence that it actually does anything
             System.gc();
