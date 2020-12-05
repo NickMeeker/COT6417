@@ -3,6 +3,16 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * IMPORTANT: This class is completely unused in the final implementation.
+ * It was replaced by BetterSuffixArray because it (this class) is terrible.
+ * It constructs the SuffixArray/BWT completely naively: dump all the suffixes
+ * into a list, sort the list, compute the entire Burrows-Wheeler matrix,
+ * sort the matrix, and get the BWT L string from the sorted matrix.
+ *
+ * It's only kept here for posterity's sake, and for debugging on simple test cases
+ * since it definitely works (in case there's an issue with BetterSuffixArray).
+ * */
 public class SuffixArray {
     List<Suffix> suffixArray;
     List<Suffix> sortedSuffixArray;

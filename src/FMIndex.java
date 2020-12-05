@@ -123,20 +123,4 @@ public class FMIndex {
 
         return new int[]{sp - 1, ep - 1};
     }
-
-    public void inOrderPrint(WaveletTreeNode node){
-        if (node.left != null) {
-            inOrderPrint(node.left);
-        }
-
-        for(int bit : node.B) {
-            System.out.print(bit);
-        }
-
-        System.out.println();
-
-        if (node.right != null) {
-            inOrderPrint(node.right);
-        }
-    }
 }

@@ -11,12 +11,14 @@ public class Driver {
         // currently set to run against corpuses 1-15
         for(int bytes = 100000; bytes <= 1500000; bytes += 100000) {
         //for(int bytes = 1; bytes <= 15; bytes += 1) {
-            // dont try this at home
+            // dont try this at home - pray the gc gets cleared on each run so we can get a better idea of mem usage
+            // this is kind of a joke, i don't have any evidence that it actually does anything
             System.gc();
             System.gc();
             System.gc();
             System.gc();
             System.gc();
+
             System.out.println(bytes / 100000 + " out of " + 20);
             PrintStream o = new PrintStream(new File("corpus_" + bytes + "_preprocessing_metrics_demo.txt"));
             //PrintStream o = new PrintStream(new File("pattern_" + bytes + "_runtime_metrics.txt"));
